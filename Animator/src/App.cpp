@@ -62,7 +62,10 @@ Camera camera(SCREEN_WIDTH, SCREEN_HEIGHT, { 0.0f, 0.0f, 1.0f });
 void SetupViewport(int width, int height)
 {
 	glViewport(0, 0, width, height);
-	camera.SetScreenSize(width, height);
+	if (width != 0 && height != 0)
+	{
+		camera.SetScreenSize(width, height);
+	}
 }
 
 void WindowSizeCallback(GLFWwindow* window, int width, int height)
