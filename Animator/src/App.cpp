@@ -9,6 +9,7 @@
 #include <chrono>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <Windows.h>
 #include <imgui/imgui.h>
 #include <imgui/imgui_internal.h>
 #include <imgui/imgui_impl_glfw.h>
@@ -598,7 +599,7 @@ GLFWwindow* CreateMainWindow()
 {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Lab 8", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Animator", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -678,7 +679,11 @@ void CreateShaders()
 	CreateLitMeshShader();
 }
 
+#if _DEBUG
 int main()
+#else
+int WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
+#endif
 {
 	if (!glfwInit())
 	{
